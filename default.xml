@@ -27,7 +27,6 @@
     <copyfile src="core/root.mk" dest="Makefile" />
   </project>
   <project path="bionic" name="bionic" groups="pdk" remote="tesla" />
-  <project path="bootable/recovery" name="bootable_recovery" groups="pdk" remote="tesla" />
   <project path="build/kati" name="build_kati" groups="pdk,tradefed" remote="tesla" />
   <project path="device/qcom/common" name="device_qcom_common" remote="tesla" />
   <project path="device/qcom/sepolicy" name="android_device_qcom_sepolicy" remote="tesla" />
@@ -96,5 +95,8 @@
   <project path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" groups="pdk,linux,arm" remote="aosp" revision="master" />
   <project path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.9" name="DespairFactor/arm-eabi-4.9" remote="bb" revision="master" />
 
+  <project name="multirom-redmi2/android_device_redmi2" path="device/wingtech/wt88047" remote="github" revision="tesla" />
+  <project name="premaca/android_kernel_wingtech_msm8916" path="kernel/wingtech/msm8916" remote="github" revision="cm-14.0" />
+  <project name="TeamWin/Team-Win-Recovery-Project" path="bootable/recovery" remote="github" revision="android-6.0" />
 
 </manifest>
