@@ -1,129 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-  <remote  name="aosp"
-           fetch="https://android.googlesource.com/" />
 
   <remote  name="github"
-           fetch="git://github.com/" />
+           fetch="https://github.com" />
 
-  <remote  name="slim"
-           fetch="https://github.com/SlimRoms"
-           revision="mm6.0" />
+  <remote  name="aosp"
+           fetch="https://android.googlesource.com"
+           review="android-review.googlesource.com" />
 
-  <remote  name="cm"
-           fetch="https://github.com/CyanogenMod"
-           revision="cm-13.0" />
+  <remote  name="bb"
+           fetch="https://bitbucket.org/" />
 
-  <remote name="bb"
-          fetch="https://bitbucket.org/" />
+  <remote  name="tesla"
+           fetch="https://github.com/TeslaRom-N/"
+           revision="n7.0" /> 
 
-  <remote  name="tm"
-           fetch="https://github.com/Tesla-M"
-           revision="mm6.0" />    
-           
-  <remote  name="vm"
-           fetch="https://github.com/ValidusOs-M"
-           revision="mm6.0" />
-           
-  <remote  name="multirom"
-           fetch="https://github.com/Tasssadar" />
-
-  <remote  name="MRredmi2"
-           fetch="https://github.com/multirom-redmi2" />
-
-  <default revision="refs/tags/android-6.0.1_r43"
+  <default revision="refs/tags/android-7.0.0_r14"
            remote="aosp"
+           sync-c="true"
            sync-j="4" />
 
-  <project path="build" name="android_build" remote="tm" >
+
+  <!-- Tesla Repo's -->
+  <project path="manifest" name="manifest" remote="tesla" revision="n7.0" />
+  <project path="build" name="build" groups="pdk,tradefed" remote="tesla" >
     <copyfile src="core/root.mk" dest="Makefile" />
   </project>
-  <project path="bionic" name="bionic" remote="tm" />
-  <project path="device/generic/goldfish" name="device/generic/goldfish" groups="pdk" />
-  <project path="device/qcom/common" name="device_qcom_common" remote="slim" />
-  <project path="frameworks/native" name="frameworks_native" remote="tm" />
-  <project path="hardware/libhardware" name="hardware_libhardware" remote="slim" />
-  <project path="system/keymaster" name="android_system_keymaster" remote="slim" />
-  <project path="libcore" name="android_libcore" remote="slim" />
-  <project path="libnativehelper" name="platform/libnativehelper" groups="pdk" />
+  <project path="bionic" name="bionic" groups="pdk" remote="tesla" />
+  <project path="bootable/recovery" name="bootable_recovery" groups="pdk" remote="tesla" />
+  <project path="build/kati" name="build_kati" groups="pdk,tradefed" remote="tesla" />
+  <project path="device/qcom/common" name="device_qcom_common" remote="tesla" />
+  <project path="device/qcom/sepolicy" name="android_device_qcom_sepolicy" remote="tesla" />
+  <project path="external/bash" name="external_bash" remote="tesla" />
+  <project path="external/boringssl" name="external_boringssl" groups="pdk" remote="tesla" />
+  <project path="external/e2fsprogs" name="external_e2fsprogs" groups="pdk" remote="tesla" />
+  <project path="external/exfat" name="external_exfat" remote="tesla" />
+  <project path="external/f2fs-tools" name="external_f2fs-tools" remote="tesla" />
+  <project path="external/fuse" name="external_fuse" remote="tesla" />
+  <project path="external/libselinux" name="external_libselinux" groups="pdk" remote="tesla" />
+  <project path="external/gptfdisk" name="external_gptfdisk" groups="pdk-fs" remote="tesla" />
+  <project path="external/mksh" name="external_mksh" groups="pdk" remote="tesla" />
+  <project path="external/nano" name="external_nano" remote="tesla" />
+  <project path="external/ntfs-3g" name="external_ntfs-3g" remote="tesla" />
+  <project path="external/sony/boringssl-compat" name="external_sony_boringssl-compat" remote="tesla" />
+  <project path="external/toybox" name="external_toybox" groups="pdk" remote="tesla" />
+  <project path="external/zlib" name="external_zlib" groups="pdk" remote="tesla" />
+  <project path="frameworks/native" name="frameworks_native" groups="pdk" remote="tesla" />
+  <project path="hardware/libhardware" name="hardware_libhardware" remote="tesla" />
+  <project path="libcore" name="libcore" groups="pdk" remote="tesla" revision="n7.0" />
+  <project path="system/core" name="system_core" groups="pdk" remote="tesla" />
+  <project path="system/extras" name="system_extras" groups="pdk" remote="tesla" revision="n7.0" />
+  <project path="system/keymaster" name="system_keymaster" groups="pdk" remote="tesla" revision="n7.0" />
+  <project path="system/netd" name="system_netd" groups="pdk" remote="tesla" revision="n7.0" />
+  <project path="system/sepolicy" name="system_sepolicy" groups="pdk" remote="tesla" />
+  <project path="vendor/tesla" name="vendor_tesla" remote="tesla" />
 
-  <project path="prebuilts/clang/linux-x86/host/3.6" name="platform/prebuilts/clang/linux-x86/host/3.6" groups="pdk,linux" />
-  <project path="prebuilts/clang/linux-x86/host/3.9" name="dragontc-3.9" groups="pdk,linux" remote="vm" />
-  <project path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.9" name="UBERTC/arm-eabi-4.9" remote="bb" revision="master" />
-  <project path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" name="UBERTC/arm-linux-androideabi-4.9" remote="bb" revision="master" />
-  <project path="prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9-kernel" name="UBERTC/aarch64-linux-android-4.9-kernel" remote="bb" revision="master" />
-  <project path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" groups="pdk,linux,arm" />
-  <project path="prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.15-4.8" name="platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.15-4.8"  groups="pdk,linux" />
-  <project path="prebuilts/misc" name="prebuilts_misc" groups="pdk" remote="tm" />
-  <project path="prebuilts/ndk" name="prebuilts_ndk" groups="pdk" remote="tm" />
-  <project path="prebuilts/sdk" name="platform/prebuilts/sdk" groups="pdk" />
-  <project path="system/core" name="system_core" remote="tm" />
-  <project path="system/extras" name="android_system_extras" remote="slim" />
-  <project path="system/netd" name="android_system_netd" remote="slim" />
-  <project path="device/qcom/sepolicy" name="device_qcom_sepolicy" remote="slim" />
-
-
-  <project path="vendor/tesla" name="vendor_tesla" remote="tm" />
- 
+  <!-- AOSP -->
+  <project path="device/generic/goldfish" name="device/generic/goldfish" groups="pdk" remote="aosp" />
   <project path="external/bison" name="platform/external/bison" groups="pdk" />
-  <project path="external/boringssl" name="platform/external/boringssl" groups="pdk" />
   <project path="external/bouncycastle" name="platform/external/bouncycastle" groups="pdk" />
-  <project path="external/busybox" name="android_external_busybox" remote="slim" />
   <project path="external/bzip2" name="platform/external/bzip2" groups="pdk" />
   <project path="external/clang" name="platform/external/clang" groups="pdk" />
   <project path="external/compiler-rt" name="platform/external/compiler-rt" groups="pdk" />
-  <project path="external/e2fsprogs" name="android_external_e2fsprogs" groups="pdk" remote="slim" />
   <project path="external/elfutils" name="platform/external/elfutils" groups="pdk" />
-  <project path="external/exfat" name="android_external_exfat" remote="slim" />
-  <project name="omnirom/android_external_f2fs-tools" path="external/f2fs-tools" remote="github" revision="android-6.0" />
   <project path="external/freetype" name="platform/external/freetype" groups="pdk" />
-  <project path="external/fuse" name="android_external_fuse" remote="slim" />
-  <project path="external/gptfdisk" name="platform/external/gptfdisk" groups="pdk-fs" />
   <project path="external/icu" name="platform/external/icu" groups="pdk" />
   <project path="external/jemalloc" name="platform/external/jemalloc" groups="pdk" />
-  <project path="external/jpeg" name="platform/external/jpeg" groups="pdk" />
   <project path="external/libcxx" name="platform/external/libcxx" groups="pdk" />
   <project path="external/libcxxabi" name="platform/external/libcxxabi" groups="pdk" />
   <project path="external/libdrm" name="platform/external/libdrm" groups="pdk" />
   <project path="external/libnl" name="platform/external/libnl" groups="pdk" />
   <project path="external/libpng" name="platform/external/libpng" groups="pdk" />
-  <project path="external/libseccomp-helper" name="platform/external/libseccomp-helper" groups="pdk-cw-fs,pdk-fs" />
-  <project path="external/libselinux" name="platform/external/libselinux" groups="pdk" />
   <project path="external/libunwind" name="platform/external/libunwind" groups="pdk" />
   <project path="external/llvm" name="platform/external/llvm" groups="pdk" />
   <project path="external/ltrace" name="platform/external/ltrace" groups="pdk-cw-fs,pdk-fs" />
   <project path="external/lz4" name="platform/external/lz4" groups="pdk-cw-fs,pdk-fs" />
   <project path="external/lzma" name="platform/external/lzma" groups="pdk" />
-  <project path="external/mksh" name="platform/external/mksh" groups="pdk" />
-  <project path="external/ntfs-3g" name="android_external_ntfs-3g" remote="slim" />
   <project path="external/pcre" name="platform/external/pcre" groups="pdk" />
   <project path="external/safe-iop" name="platform/external/safe-iop" groups="pdk" />
   <project path="external/selinux" name="platform/external/selinux" groups="pdk" />
-  <project path="external/sepolicy" name="android_external_sepolicy" remote="tm" />
   <project path="external/squashfs-tools" name="platform/external/squashfs-tools" groups="pdk" />
-  <project path="external/toybox" name="platform/external/toybox" groups="pdk" />
-  <project path="external/zlib" name="platform/external/zlib" groups="pdk" />
 
+  <project path="libnativehelper" name="platform/libnativehelper" groups="pdk" />
 
+  <project path="prebuilts/clang/linux-x86/host/3.6" name="platform/prebuilts/clang/linux-x86/host/3.6" groups="pdk,linux" clone-depth="1" />
+  <project path="prebuilts/clang/host/linux-x86" name="platform/prebuilts/clang/host/linux-x86" groups="pdk" clone-depth="1" />
+  <project path="prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" name="platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9" groups="pdk,linux,arm" clone-depth="1" />
+  <project path="prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.15-4.8" name="platform/prebuilts/gcc/linux-x86/host/x86_64-linux-glibc2.15-4.8" groups="pdk,linux" clone-depth="1" />
+  <project path="prebuilts/misc" name="platform/prebuilts/misc" groups="pdk" clone-depth="1" />
+  <project path="prebuilts/ndk" name="platform/prebuilts/ndk" groups="pdk" clone-depth="1" />
+  <project path="prebuilts/ninja/linux-x86" name="platform/prebuilts/ninja/linux-x86" groups="linux,pdk,tradefed" clone-depth="1" />
+  <project path="prebuilts/sdk" name="platform/prebuilts/sdk" groups="pdk" clone-depth="1" />
 
-<!-- ADD IN TWRP & MULTIROM REPOS  -->
-  <project name="android_bootable_recovery" path="bootable/recovery" remote="MRredmi2" revision="android-6.0-mrom" />
-  <project name="multirom" path="system/extras/multirom" remote="MRredmi2" revision="master" />
-  <project name="kexec-tools" path="system/extras/multirom/kexec-tools" remote="MRredmi2" revision="master" />
-  <project name="libbootimg" path="system/extras/libbootimg" remote="multirom" revision="master" />
-  <project name="multirom_adbd" path="system/extras/multirom/adbd" remote="multirom" revision="master" />
+  <!-- Temp prebuilts -->
+  <project path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" name="platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8" groups="pdk,linux,arm" remote="aosp" revision="master" />
+  <project path="prebuilts/gcc/linux-x86/arm/arm-eabi-4.9" name="DespairFactor/arm-eabi-4.9" remote="bb" revision="master" />
 
-<!-- ADD IN DEVICE-SPECIFIC REPOS  -->
-  <project name="android_kernel_cyanogen_msm8916" path="kernel/cyanogen/msm8916" remote="MRredmi2" revision="dt2w" />
-  <project name="android_device_cyanogen_msm8916-common" path="device/cyanogen/msm8916-common" remote="MRredmi2" revision="cm-13.0"/>
-  <project name="android_device_wingtech_wt88047" path="device/wingtech/wt88047" remote="MRredmi2" revision="mrom" >
-       <!--
-       <copyfile src="mr-wt88047.sh" dest="mr-wt88047.sh" />
-       -->
-  </project>
-  <project name="multirom-redmi2.github.io" path="external/multirom" remote="MRredmi2" revision="master" />
-  
 
 </manifest>
-
-
